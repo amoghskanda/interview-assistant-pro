@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { 
@@ -40,16 +39,13 @@ const Dashboard = () => {
   const currentJob = mockJobDescriptions.find(job => job.id === selectedJob) || mockJobDescriptions[0];
   const candidates = currentJob.candidates || [];
   
-  // Filter candidates based on search query
   const filteredCandidates = candidates.filter(candidate => 
     candidate.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
     candidate.skills.some(skill => skill.toLowerCase().includes(searchQuery.toLowerCase()))
   );
   
-  // Sort candidates by match score (highest first)
   const sortedCandidates = [...filteredCandidates].sort((a, b) => b.matchScore - a.matchScore);
 
-  // Stats
   const testsSent = candidates.filter(c => 
     c.tests?.some(t => t.status === 'sent' || t.status === 'completed')
   ).length;
@@ -68,7 +64,6 @@ const Dashboard = () => {
           </p>
         </div>
 
-        {/* Stats Row */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           <Card className="hover-lift subtle-shadow animate-slide-up" style={{animationDelay: "0.1s"}}>
             <CardContent className="p-6">
@@ -131,7 +126,6 @@ const Dashboard = () => {
           </Card>
         </div>
 
-        {/* Job Selection and Search */}
         <Card className="subtle-shadow animate-fade-in">
           <CardHeader>
             <CardTitle>Candidate Rankings</CardTitle>
@@ -273,7 +267,6 @@ const Dashboard = () => {
           </CardContent>
         </Card>
 
-        {/* Quick Access Buttons */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 animate-fade-in">
           <Button 
             variant="outline" 

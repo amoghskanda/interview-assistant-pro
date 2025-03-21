@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { 
@@ -41,7 +40,6 @@ const CandidateProfile = () => {
   const { toast } = useToast();
   const [activeTab, setActiveTab] = useState("profile");
   
-  // Find candidate and related job descriptions
   const candidate = mockCandidates.find(c => c.id === id);
   const relatedJobs = mockJobDescriptions.filter(
     job => job.candidates?.some(c => c.id === id)
@@ -81,7 +79,6 @@ const CandidateProfile = () => {
   return (
     <Layout>
       <div className="space-y-6 animate-fade-in">
-        {/* Header with back button */}
         <div className="flex items-center space-x-2">
           <Button 
             variant="ghost" 
@@ -94,7 +91,6 @@ const CandidateProfile = () => {
           <h1 className="text-3xl font-bold tracking-tight">Candidate Profile</h1>
         </div>
 
-        {/* Profile Header */}
         <Card className="subtle-shadow overflow-hidden animate-scale-in">
           <div className="relative">
             <div className="h-32 bg-gradient-to-r from-primary/10 to-primary/20"></div>
@@ -134,7 +130,6 @@ const CandidateProfile = () => {
                 <Button 
                   className="bg-primary/90 hover:bg-primary"
                   onClick={() => {
-                    // Open test selection modal or navigate to test creation
                     toast({
                       title: "Coming soon",
                       description: "This feature will be available in the next update",
@@ -149,7 +144,6 @@ const CandidateProfile = () => {
           </CardContent>
         </Card>
 
-        {/* Tabs for different sections */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="animate-fade-in">
           <TabsList className="grid grid-cols-3 w-full max-w-md">
             <TabsTrigger value="profile">Profile</TabsTrigger>
@@ -157,10 +151,8 @@ const CandidateProfile = () => {
             <TabsTrigger value="tests">Tests</TabsTrigger>
           </TabsList>
           
-          {/* Profile Tab */}
           <TabsContent value="profile" className="space-y-6 animate-fade-in">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {/* Skills */}
               <Card className="col-span-1 subtle-shadow animate-slide-up" style={{animationDelay: "0.1s"}}>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-xl flex items-center">
@@ -179,7 +171,6 @@ const CandidateProfile = () => {
                 </CardContent>
               </Card>
 
-              {/* Education */}
               <Card className="col-span-1 md:col-span-2 subtle-shadow animate-slide-up" style={{animationDelay: "0.2s"}}>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-xl flex items-center">
@@ -206,7 +197,6 @@ const CandidateProfile = () => {
                 </CardContent>
               </Card>
               
-              {/* Work Experience */}
               <Card className="col-span-1 md:col-span-3 subtle-shadow animate-slide-up" style={{animationDelay: "0.3s"}}>
                 <CardHeader className="pb-3">
                   <CardTitle className="text-xl flex items-center">
@@ -238,7 +228,6 @@ const CandidateProfile = () => {
             </div>
           </TabsContent>
           
-          {/* Job Matches Tab */}
           <TabsContent value="matches" className="space-y-6 animate-fade-in">
             <Card className="subtle-shadow">
               <CardHeader>
@@ -303,7 +292,6 @@ const CandidateProfile = () => {
                               <h4 className="font-medium mb-2">Key Requirements</h4>
                               <ul className="space-y-2">
                                 {job.requirements.map((req, index) => {
-                                  // Determine if candidate matches this requirement (simplified)
                                   const matches = jobCandidate.skills.some(skill => 
                                     req.toLowerCase().includes(skill.toLowerCase())
                                   );
@@ -342,7 +330,6 @@ const CandidateProfile = () => {
             </Card>
           </TabsContent>
           
-          {/* Tests Tab */}
           <TabsContent value="tests" className="space-y-6 animate-fade-in">
             <Card className="subtle-shadow">
               <CardHeader className="flex flex-col sm:flex-row sm:items-center sm:justify-between space-y-2 sm:space-y-0">
